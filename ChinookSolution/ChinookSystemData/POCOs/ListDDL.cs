@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace ChinookSystemData.POCOs
 {
-    class Dummy
+    public class ListDDL
     {
+        public int ValueField { get; set; }
+        public string DisplayField { get; set; }
     }
 }
