@@ -11,7 +11,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ChinookSystemData.Entities
 {
-    //identify the sql entity (table this class maps
+    //identify the sql entity (table) this class maps
     [Table("Artists")]
     public class Artist
     {
