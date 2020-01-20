@@ -8,7 +8,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{298C4FF1-DE0F-42C5-B155-E8AEC64EACA1}</ProjectGuid>
+    <ProjectGuid>{4E1B8AD7-FFEF-4E2A-8DBA-293A77578317}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -190,6 +190,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Account\Web.config" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="SamplePages\ListViewODSCRUD.aspx" />
     <Content Include="SamplePages\ODSReview.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -363,6 +364,13 @@
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SamplePages\ListViewODSCRUD.aspx.cs">
+      <DependentUpon>ListViewODSCRUD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SamplePages\ListViewODSCRUD.aspx.designer.cs">
+      <DependentUpon>ListViewODSCRUD.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SamplePages\ODSReview.aspx.cs">
       <DependentUpon>ODSReview.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -415,12 +423,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ChinookSystemData\ChinookSystemData.csproj">
-      <Project>{c83934ca-9c15-42cd-ad5b-1027be3e6d31}</Project>
-      <Name>ChinookSystemData</Name>
+    <ProjectReference Include="..\ChinookSystem.Data\ChinookSystem.Data.csproj">
+      <Project>{772296f1-d080-4bac-ae7b-4e836d961c02}</Project>
+      <Name>ChinookSystem.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\ChinookSystem\ChinookSystem.csproj">
-      <Project>{eed3d832-e8e0-41da-b44d-c7e82ffd4d6a}</Project>
+      <Project>{24b0b1ef-51e5-4b82-b698-0dbea8618cc5}</Project>
       <Name>ChinookSystem</Name>
     </ProjectReference>
   </ItemGroup>
@@ -437,9 +445,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>51101</DevelopmentServerPort>
+          <DevelopmentServerPort>52348</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:44318/</IISUrl>
+          <IISUrl>http://localhost:44319/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

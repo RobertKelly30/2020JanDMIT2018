@@ -48,7 +48,7 @@
                     <a class="navbar-brand" runat="server" href="~/">Class Samples A03</a>
                 </div>
                 <div class="navbar-collapse collapse">
-                    <%--<ul class="nav navbar-nav">
+                   <%-- <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">Home</a></li>
                         <li><a runat="server" href="~/About">About</a></li>
                         <li><a runat="server" href="~/Contact">Contact</a></li>
@@ -70,21 +70,20 @@
                             </ul>
                         </LoggedInTemplate>
                     </asp:LoginView>
-                    <%-- AddContentTemplate this Menu control --%>
-                
-	     <asp:Menu ID="navMenu" runat="server" 
+                    <asp:Menu ID="navMenu" runat="server" 
                     BackColor="#222222" BorderColor="Red"
                     StaticMenuItemStyle-ForeColor="#999999" 
                     StaticMenuItemStyle-VerticalPadding="15px"
                     StaticMenuItemStyle-HorizontalPadding="10px"
                     RenderingMode="List" Orientation="Horizontal" 
                     DynamicMenuItemStyle-ForeColor="#999999" 
-                    DynamicMenuStyle-BackColor="#222222">
+                    DynamicMenuStyle-BackColor="Black">
                     <Items>
                         <asp:MenuItem Text="Home" NavigateUrl="~/"></asp:MenuItem>
 
                         <asp:MenuItem Text="Samples" Value="Samples">
                             <asp:MenuItem Text="ODS Review" NavigateUrl="~/SamplePages/ODSReview.aspx"></asp:MenuItem>
+                            <asp:MenuItem Text="ODS CRUD" NavigateUrl="~/SamplePages/ListViewODSCRUD.aspx"></asp:MenuItem>
 
                         </asp:MenuItem>
 
@@ -100,7 +99,7 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - DMIT2018 Section A03</p>
+                <p>&copy; <%: DateTime.Now.Year %> - DMIT2018 Section A03 Nait Jan 2020</p>
             </footer>
         </div>
     </form>
