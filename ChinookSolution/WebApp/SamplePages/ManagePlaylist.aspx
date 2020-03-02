@@ -4,11 +4,14 @@
 
 
 
+
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <div>
     <h1>Manage Playlists (UI/UX TRX Sample)</h1>
 </div>
-
+    <%--Add MessageUserControl--%>
     <uc1:MessageUserControl runat="server" ID="MessageUserControl" />
     <div class="row">
     <div class="col-sm-2">
@@ -23,10 +26,11 @@
         <asp:DropDownList ID="MediaTypeDDL" runat="server"
             Width="150px" DataSourceID="MediaTypeDDLODS" 
             DataTextField="DisplayText" 
-            DataValueField="IDValueField">
+            DataValueField="IDValueField"
+             AppendDataBoundItems="true" AutoPostBack="True" OnSelectedIndexChanged="MediaTypeDDL_SelectedIndexChanged">
+            <asp:ListItem Value="0">select...</asp:ListItem>
         </asp:DropDownList><br />
-        <asp:Button ID="MediaTypeFetch" runat="server" 
-            Text="Fetch" OnClick="MediaTypeFetch_Click"  />
+
         <br /><br />
          <asp:Label ID="Label3" runat="server" Text="Genre"></asp:Label><br />
         <asp:DropDownList ID="GenreDDL" runat="server"
@@ -50,7 +54,7 @@
         <asp:Label ID="TracksBy" runat="server" ></asp:Label>&nbsp;&nbsp;
         <asp:Label ID="SearchArg" runat="server" ></asp:Label><br />
         <asp:ListView ID="TracksSelectionList" runat="server"
-            DataSourceID="TrackSelectionListODS"
+
             OnItemCommand="TracksSelectionList_ItemCommand"
              >
             <AlternatingItemTemplate>
@@ -239,17 +243,10 @@
          OnSelected="CheckForException"
          >
     </asp:ObjectDataSource>
-   
-    <asp:ObjectDataSource ID="TrackSelectionListODS" runat="server" 
-        OldValuesParameterFormatString="original_{0}" 
-        SelectMethod="List_TracksForPlaylistSelection" 
-        TypeName="ChinookSystem.BLL.TrackController"
-         OnSelected="CheckForException"
-         >
-        <SelectParameters>
-            <asp:ControlParameter ControlID="TracksBy" PropertyName="Text" Name="tracksby" Type="String"></asp:ControlParameter>
-            <asp:ControlParameter ControlID="SearchArg" PropertyName="Text" Name="arg" Type="String"></asp:ControlParameter>
-        </SelectParameters>
+    <asp:ObjectDataSource ID="TracksSelectionListODS" runat="server">
+
     </asp:ObjectDataSource>
+   
+    
 
 </asp:Content>

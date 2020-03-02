@@ -18,6 +18,56 @@ namespace ChinookSystem.BLL
     public class TrackController
     {
         [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public List<TrackList> Track_GetTracksByTypeandID(string tracksby, string searcharg)
+        {
+            using (var context = new ChinookContext())
+            {
+                List<TrackList> results = null;
+                int searchint = 0;
+                if (int.TryParse(searcharg, out searchint))
+                {
+                    //searchs for MediaType and Genre
+                    results = (from x in context.Tracks
+                              where (x.GenreId == searchint && tracksby.Equals("Genre"))
+                                || (x.MediaTypeId == searchint && tracksby.Equals("MediaType"))
+                              select new TrackList
+                              {
+                                  TrackID = x.TrackId,
+                                  Name = x.Name,
+                                  Title = x.Album.Title,
+                                  ArtistName = x.Album.Artist.Name,
+                                  MediaName = x.MediaType.Name,
+                                  GenreName = x.Genre.Name,
+                                  Composer = x.Composer,
+                                  Milliseconds = x.Milliseconds,
+                                  Bytes = x.Bytes,
+                                  UnitPrice = x.UnitPrice
+                              }).ToList();
+                }
+                else
+                {
+                    //searchs for Artist and Album
+                    results = (from x in context.Tracks
+                               where (x.Album.Title.Contains(searcharg) && tracksby.Equals("Album"))
+                                 || (x.Album.Artist.Name.Contains(searcharg) && tracksby.Equals("Artist"))
+                               select new TrackList
+                               {
+                                   TrackID = x.TrackId,
+                                   Name = x.Name,
+                                   Title = x.Album.Title,
+                                   ArtistName = x.Album.Artist.Name,
+                                   MediaName = x.MediaType.Name,
+                                   GenreName = x.Genre.Name,
+                                   Composer = x.Composer,
+                                   Milliseconds = x.Milliseconds,
+                                   Bytes = x.Bytes,
+                                   UnitPrice = x.UnitPrice
+                               }).ToList();
+                }
+                return results;
+            }
+        }
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
         public List<Track> Track_List()
         {
             using (var context = new ChinookContext())
@@ -48,18 +98,8 @@ namespace ChinookSystem.BLL
             }
         }
 
-        [DataObjectMethod(DataObjectMethodType.Select,false)]
-        public List<TrackList> List_TracksForPlaylistSelection(string tracksby, string arg)
-        {
-            using (var context = new ChinookContext())
-            {
-                List<TrackList> results = null;
-
-               //code to go here
-
-                return results;
-            }
-        }//eom
+        
+        //eom
 
        
     }//eoc

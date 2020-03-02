@@ -26,29 +26,45 @@ namespace WebApp.SamplePages
 
         protected void ArtistFetch_Click(object sender, EventArgs e)
         {
-            
-                //code to go here
 
-          }
-
-        protected void MediaTypeFetch_Click(object sender, EventArgs e)
-        {
-
-                //code to go here
+            if (string.IsNullOrEmpty(ArtistName.Text))
+            {
+                MessageUserControl.ShowInfo("Selection Error", "You must enter an artist name or part of");
+                TracksBy.Text = "";
+                SearchArg.Text = "";
+            }
+            else
+            {
+                TracksBy.Text = "Artist";
+                SearchArg.Text = ArtistName.Text;
+                //TracksSelectionList.DataBind();     //force an ODS to re-execute
+            }
 
         }
 
+
         protected void GenreFetch_Click(object sender, EventArgs e)
         {
-
-                //code to go here
-
+                TracksBy.Text = "Genre";
+                SearchArg.Text = GenreDDL.SelectedValue;
+                //TracksSelectionList.DataBind();     //force an ODS to re-execute
         }
 
         protected void AlbumFetch_Click(object sender, EventArgs e)
         {
 
-                //code to go here
+            if (string.IsNullOrEmpty(AlbumTitle.Text))
+            {
+                MessageUserControl.ShowInfo("Selection Error", "You must enter an album title or part of");
+                TracksBy.Text = "";
+                SearchArg.Text = "";
+            }
+            else
+            {
+                TracksBy.Text = "Album";
+                SearchArg.Text = AlbumTitle.Text;
+                //TracksSelectionList.DataBind();     //force an ODS to re-execute
+            }
 
         }
 
@@ -90,5 +106,21 @@ namespace WebApp.SamplePages
             
         }
 
+        protected void MediaTypeDDL_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(MediaTypeDDL.SelectedIndex == 0)
+            {
+                MessageUserControl.ShowInfo("Selection Error","You must select a media type");
+                TracksBy.Text = "";
+                SearchArg.Text = "";
+            }
+            else
+            {
+                TracksBy.Text = "MediaType";
+                SearchArg.Text = MediaTypeDDL.SelectedValue;
+                //TracksSelectionList.DataBind();     //force an ODS to re-execute
+            }
+
+        }
     }
 }
