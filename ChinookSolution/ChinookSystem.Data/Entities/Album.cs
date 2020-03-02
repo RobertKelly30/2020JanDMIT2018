@@ -1,11 +1,11 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Spatial;
+
 namespace ChinookSystem.Data.Entities
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
-
     public partial class Album
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -16,7 +16,7 @@ namespace ChinookSystem.Data.Entities
 
         public int AlbumId { get; set; }
 
-        [Required(ErrorMessage = "Title is required")]
+        [Required(ErrorMessage ="Title is required")]
         [StringLength(160, ErrorMessage = "Title is limited to 160 characters")]
         public string Title { get; set; }
 
@@ -24,7 +24,7 @@ namespace ChinookSystem.Data.Entities
 
         public int ReleaseYear { get; set; }
 
-        [StringLength(50, ErrorMessage = "Release Label is limited to 160 characters")]
+        [StringLength(50, ErrorMessage = "Release Label is limited to 50 characters")]
         public string ReleaseLabel { get; set; }
 
         public virtual Artist Artist { get; set; }
