@@ -1,9 +1,8 @@
-﻿<%@ Page Title="OLTP Playlist" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ManagePlaylist.aspx.cs" Inherits="WebApp.SamplePages.ManagePlaylist" %>
+﻿<%@ Page Title="OLTP Playlist" Language="C#" MasterPageFile="~/Site.Master"
+    AutoEventWireup="true" CodeBehind="ManagePlaylist.aspx.cs" 
+    Inherits="WebApp.SamplePages.ManagePlaylist" %>
 
 <%@ Register Src="~/UserControls/MessageUserControl.ascx" TagPrefix="uc1" TagName="MessageUserControl" %>
-
-
-
 
 
 
@@ -12,14 +11,15 @@
     <h1>Manage Playlists (UI/UX TRX Sample)</h1>
 </div>
     <%--Add MessageUserControl--%>
-    <uc1:MessageUserControl runat="server" ID="MessageUserControl" />
+    <uc1:MessageUserControl runat="server" id="MessageUserControl" />
     <div class="row">
     <div class="col-sm-2">
         <asp:Label ID="Label1" runat="server" Text="Artist" ></asp:Label><br />
         <asp:TextBox ID="ArtistName" runat="server"
             Width="150px" placeholder="artist name">
         </asp:TextBox><br />
-        <asp:Button ID="ArtistFetch" runat="server" Text="Fetch" OnClick="ArtistFetch_Click"
+        <asp:Button ID="ArtistFetch" runat="server" Text="Fetch" 
+            OnClick="ArtistFetch_Click"
               />
         <br /><br />
          <asp:Label ID="Label2" runat="server" Text="Media"></asp:Label><br />
@@ -28,9 +28,9 @@
             DataTextField="DisplayText" 
             DataValueField="IDValueField"
              AppendDataBoundItems="true" AutoPostBack="True" OnSelectedIndexChanged="MediaTypeDDL_SelectedIndexChanged">
-            <asp:ListItem Value="0">select...</asp:ListItem>
+             <asp:ListItem Value="0">select...</asp:ListItem>
         </asp:DropDownList><br />
-
+       
         <br /><br />
          <asp:Label ID="Label3" runat="server" Text="Genre"></asp:Label><br />
         <asp:DropDownList ID="GenreDDL" runat="server"
@@ -51,12 +51,13 @@
     </div>
     <div class="col-sm-10">
         <asp:Label ID="Label5" runat="server" Text="Tracks"></asp:Label>&nbsp;&nbsp;
-        <asp:Label ID="TracksBy" runat="server" ></asp:Label>&nbsp;&nbsp;
-        <asp:Label ID="SearchArg" runat="server" ></asp:Label><br />
+        <asp:Panel ID="TracksSelectionListArgs" runat="server" Visible="false">
+            <asp:Label ID="TracksBy" runat="server" ></asp:Label>&nbsp;&nbsp;
+            <asp:Label ID="SearchArg" runat="server" ></asp:Label><br />
+        </asp:Panel>
         <asp:ListView ID="TracksSelectionList" runat="server"
-
             OnItemCommand="TracksSelectionList_ItemCommand"
-             >
+            DataSourceID="TracksSelectionListODS">
             <AlternatingItemTemplate>
                 <tr style="background-color: #FFFFFF; color: #284775;">
                     <td>
@@ -201,7 +202,7 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Name">
                     <ItemTemplate>
-                        <asp:Label runat="server" ID="TrachName"
+                        <asp:Label runat="server" ID="TrackName"
                             Text='<%# Eval("TrackName") %>'></asp:Label>
                           &nbsp;&nbsp;
                     </ItemTemplate>
@@ -243,10 +244,19 @@
          OnSelected="CheckForException"
          >
     </asp:ObjectDataSource>
-    <asp:ObjectDataSource ID="TracksSelectionListODS" runat="server">
+    <asp:ObjectDataSource ID="TracksSelectionListODS" runat="server" 
+        OldValuesParameterFormatString="original_{0}" 
+        SelectMethod="Track_GetTracksByTrackandID" 
+        TypeName="ChinookSystem.BLL.TrackController"
+         OnSelected="CheckForException">
 
+        <SelectParameters>
+            <asp:ControlParameter ControlID="TracksBy" PropertyName="Text" 
+                DefaultValue="&quot;zxcvfd&quot;" Name="tracksby" Type="String"></asp:ControlParameter>
+            <asp:ControlParameter ControlID="SearchArg" PropertyName="Text" 
+                DefaultValue="xvcbdgf" Name="searcharg" Type="String"></asp:ControlParameter>
+        </SelectParameters>
     </asp:ObjectDataSource>
-   
     
 
 </asp:Content>
